@@ -1,0 +1,8 @@
+/.idea
+.env
+.vscode
+*.tar.gz
+*.zip
+*.rar
+*.7z
+*.log
