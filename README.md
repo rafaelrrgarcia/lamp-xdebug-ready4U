@@ -84,3 +84,20 @@ To start debugging (independent of the IDE) do the following:
 5. Now, in the IDE, just enter debug mode, include breakpoints in the code and update the system in the browser. The debugger will stop at the first breakpointed line found in the run.
 
 Enjoy!
+
+## EXTRA: Enable HTTPS
+
+You can generate a self-signed certificate. The command below can be run on Linux.
+
+**Important: Keep the key names as `readyf4u.desenv.key` and `readyf4u.desenv.crt` as these same names will be used in the Apache configuration.**
+
+```bash
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/readyf4u.desenv.key -out ssl/readyf4u.desenv.crt -subj "/C=BR/ST=SP/L=SP/O=Ready4U/CN=readyf4u.desenv"
+```
+
+
+The files must be generated in the root of the ssl folder of this project.
+
+That's it. Just upload the containers and use them.
+
+Since this is a self-signed certificate, the browser will display an error message, just go ahead and access the page.

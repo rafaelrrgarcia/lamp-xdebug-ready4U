@@ -6,3 +6,5 @@
 *.rar
 *.7z
 *.log
+ssl/*
+!ssl/.gitkeep

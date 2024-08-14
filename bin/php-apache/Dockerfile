@@ -2,7 +2,10 @@ FROM php:7.2-apache
 
 RUN a2dissite 000-default
 
-RUN a2enmod expires headers rewrite ssl
+RUN a2enmod expires headers rewrite ssl && \
+    docker-php-ext-install gettext && \
+    docker-php-ext-enable gettext
+
 
 RUN service apache2 restart
 
@@ -18,5 +21,8 @@ RUN pecl install xdebug-2.6.1 && docker-php-ext-enable xdebug
 RUN docker-php-ext-configure zip --with-libzip && docker-php-ext-install -j$(nproc) pdo_mysql gd zip mysqli
 
 RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 CMD ["apache2-foreground"]
