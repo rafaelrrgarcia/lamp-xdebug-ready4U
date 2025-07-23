@@ -8,3 +8,4 @@
 *.log
 ssl/*
 !ssl/.gitkeep
+www/*

@@ -4,7 +4,7 @@ services:
     build: bin/php-apache/
     restart: always
     volumes:
-      - www:/var/www/html
+      - ${WEB_APP_PATH}:/var/www/html
       - ${PHP_INI}:/usr/local/etc/php/php.ini
       - ${APACHE_VHOSTS_DIR}:/etc/apache2/sites-enabled
       - ${APACHE_LOG_DIR}:/var/log/apache2
@@ -32,9 +32,4 @@ services:
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
-volumes:
-  www:
-    driver_opts:
-      type: none
-      device: $PWD/${WEB_APP_PATH}
-      o: bind
+

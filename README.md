@@ -1,11 +1,11 @@
 # LAMP Ready4U
 
-Lamp environment already with MariaDB and XDebug easily configured for use, having:
+Modern LAMP environment with MariaDB and XDebug easily configured for use, having:
 
-* PHP 7.2
+* PHP 8.1
 * Apache2
-* MariaDB
-* XDebug
+* MariaDB (latest)
+* XDebug (latest)
 
 ## Files
 
@@ -25,11 +25,12 @@ Lamp environment already with MariaDB and XDebug easily configured for use, havi
 * `initial-db.sql` - Initial dump for MySQL containing just an example of user table.
 * `README.md` - This file you're reading right now.
 
-## Instalation
+## Installation
 
-1. Make sure you have Docker. You can get it in the official [Docker website](https://www.docker.com);
+1. Make sure you have Docker and Docker Compose installed. You can get them from the official [Docker website](https://www.docker.com);
 2. Clone this repository in any place of your computer;
-3. Rename the file `.env.example` to `.env` and configure as below:
+3. Create the `www` directory if it doesn't exist: `mkdir -p www`;
+4. Rename the file `.env.example` to `.env` and configure as below:
     ##### Must be configured
     * `HTTP_PORT` - HTTP port for apache server (80 by default);
     * `MYSQL-*` - MySQL user, database, pass and root pass;
@@ -43,8 +44,10 @@ Lamp environment already with MariaDB and XDebug easily configured for use, havi
     * `APACHE_LOG_DIR` - Apache logs. Also having PHP logs;
     * `MYSQL_LOG_DIR` - MySQL logs (MariaDB);
     * `XDEBUG_LOG_DIR` - XDebug log path;
-4. Run `docker-compose up -d` in the project folder with a terminal;
-5. It's Ready for you to use! You can access in `http://localhost:PORT_CHOOSED`
+5. Run `docker-compose up -d` in the project folder with a terminal;
+6. It's Ready for you to use! You can access in `http://localhost:PORT_CHOOSED`
+
+**Note:** This project has been updated from PHP 7.2 to PHP 8.1 with the latest versions of XDebug and MariaDB for better compatibility and security.
 
 ## XDebug
 
@@ -89,10 +92,11 @@ Enjoy!
 
 You can generate a self-signed certificate. The command below can be run on Linux.
 
-**Important: Keep the key names as `readyf4u.desenv.key` and `readyf4u.desenv.crt` as these same names will be used in the Apache configuration.**
+**Important: Keep the key names as `ready4u.desenv.key` and `ready4u.desenv.crt` as these same names will be used in the Apache configuration.**
 
 ```bash
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/readyf4u.desenv.key -out ssl/readyf4u.desenv.crt -subj "/C=BR/ST=SP/L=SP/O=Ready4U/CN=readyf4u.desenv"
+mkdir -p ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/ready4u.desenv.key -out ssl/ready4u.desenv.crt -subj "/C=BR/ST=SP/L=SP/O=Ready4U/CN=ready4u.desenv"
 ```
 
 
